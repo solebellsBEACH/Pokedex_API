@@ -1,7 +1,6 @@
 import { IAuthenticateUser, IUser } from "../interfaces/user"
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'
-
 const User = require('../models/User')
 
 module.exports = {
