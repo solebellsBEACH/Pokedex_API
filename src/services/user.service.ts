@@ -34,7 +34,14 @@ module.exports = {
 
         return { success: true, message: '', status: 200, data: user, token };
     },
-    async getUser(data: IAuthenticateUser) {
-        
+    async getUser(userId: number) {
+        const user = undefined;
+        try {
+            const user = await User.findOne({ _id: userId })
+            user.password = undefined
+            return { success: true, message: 'Usuário encontrado com sucesso', status: 200, data: user }
+        } catch (error) {
+            return { success: false, message: 'Usuário não encontrada', status: 400, data: user }
+        }
     }
 }

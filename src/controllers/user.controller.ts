@@ -27,11 +27,11 @@ module.exports = {
         }
     },
     async getUser(req: Request & { userId: string }, res: Response, auth: any) {
-        console.log(req.userId)
         try {
-            res.send()
+            const { userId } = req;
+            const response = await UserServices.getUser(userId)
+            res.status(response.status).send(response);
         } catch (error) {
-            console.log(error);
             res.status(500).send({ message: error });
         }
 
