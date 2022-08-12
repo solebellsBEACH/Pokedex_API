@@ -3,3 +3,7 @@ export interface IUser{
     email: string;
     password: string;
 }
+export interface IAuthenticateUser{
+    email: string;
+    password: string;
+}
