@@ -8,8 +8,8 @@ module.exports = {
         try {
             const { body } = req;
             body as IUser
-            const { response } = await UserServices.create(body)
-            res.send({ status: response.status, message: 'Usuário criado com sucesso', userData: response });
+            const response = await UserServices.create(body)
+            res.status(response.status).send(response);
         } catch (error: any) {
             console.log(error);
             res.status(500).send({ message: error });
