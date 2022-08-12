@@ -1,6 +1,5 @@
 import { IAuthenticateUser, IUser } from "../interfaces/user"
 import bcrypt from 'bcrypt';
-const authConfig =  require('../config/auth')
 import jwt from 'jsonwebtoken'
 
 const User = require('../models/User')
@@ -17,15 +16,22 @@ module.exports = {
     },
     async authenticate(data: IAuthenticateUser) {
         const { email, password } = data;
+
+        const { SECRET_KEY } = process.env
+
+        if (SECRET_KEY === undefined) {
+            return
+        }
+
         const user = await User.findOne({ email }).select('+password')
 
         if (!user) return { success: false, message: 'Usuário não encontrado', status: 400 };
         if (!await bcrypt.compare(password, user.password)) return { success: false, message: 'Senha incorreta', status: 400 };
         user.password = undefined
-        const token = jwt.sign({id: user.id}, authConfig.secret,{
-            expiresIn:86400
+        const token = jwt.sign({ id: user.id }, SECRET_KEY, {
+            expiresIn: 86400
         });
 
-        return { success: true, message: '', status: 200, data:user, token};
+        return { success: true, message: '', status: 200, data: user, token };
     }
 }
