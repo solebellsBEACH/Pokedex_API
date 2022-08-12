@@ -1,12 +1,12 @@
 import express from 'express'
-const mongoConector = require('./config/moongoose-conector.js');
-const userRoutes = require('./config/routes/user')
+const mongoConector = require('./config/mongoose-connector');
+const userRoutes = require('./config/routes/user.routes')
 
 const app = express();
 
 app.use(express.json())
 require('dotenv').config()
-const { HTTP_PORT, MONGO_URI } = process.env
+const { MONGO_URI } = process.env
 
 mongoConector(MONGO_URI)
 //Routes 

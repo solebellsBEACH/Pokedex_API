@@ -1,11 +1,11 @@
+import { IUser } from "../interfaces/user"
+
 const UserModel = require('../models/User')
 
 module.exports = {
-    async create(data: any, user: any) {
-        // if (!body.content) {
-        //     throw new Error('CONTENT UNDEFINED')
-        // }
-        console.log(user, data)
-        // const userInstance= new UserModel(data)
+    async create(user: IUser) {
+        const userInstance = new UserModel(user)
+        const response = await userInstance.save()
+        return { response }
     }
 }

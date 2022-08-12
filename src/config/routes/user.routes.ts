@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
-import { Request, Response } from 'express';
+const UserControllers = require('../../controllers/user.controller')
 
-
-router.post('/create', (req: Request, res: Response) => {
-    res.send({ message: 'TESTE DAS ROTAS DE LOGIN' })
-})
+router.post('/create', UserControllers.create)
 
 module.exports = router;
