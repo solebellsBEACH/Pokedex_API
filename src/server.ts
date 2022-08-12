@@ -1,17 +1,16 @@
 import express from 'express'
-
-import { Router, Request, Response } from 'express';
+const mongoConector = require('./config/moongoose-conector.js');
+const userRoutes = require('./config/routes/user')
 
 const app = express();
 
-const route = Router()
-
 app.use(express.json())
+require('dotenv').config()
+const { HTTP_PORT, MONGO_URI } = process.env
 
-route.get('/', (req: Request, res: Response) => {
-  res.json({ message: 'hello world with Typescript' })
-})
-
-app.use(route)
+mongoConector(MONGO_URI)
+//Routes 
+app.use('/api/user', userRoutes)
+//
 
 app.listen(process.env.PORT || 3000, () => 'server running on port 3333')
