@@ -25,6 +25,17 @@ module.exports = {
             console.log(error);
             res.status(500).send({ message: error });
         }
+    },
+    async getUser(req: Request & { userId: string }, res: Response, auth: any) {
+        console.log(req.userId)
+        try {
+            res.send()
+        } catch (error) {
+            console.log(error);
+            res.status(500).send({ message: error });
+        }
+
     }
+
 
 }

@@ -33,5 +33,8 @@ module.exports = {
         });
 
         return { success: true, message: '', status: 200, data: user, token };
+    },
+    async getUser(data: IAuthenticateUser) {
+        
     }
 }
