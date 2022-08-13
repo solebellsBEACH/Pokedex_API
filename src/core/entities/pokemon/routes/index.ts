@@ -4,6 +4,6 @@ const routerPokemon = expressPokemon.Router();
 const PokemonControllersPokemon = require('../controllers/pokemon.controller')
 
 routerPokemon.use(authMiddlewarePokemon)
-routerPokemon.get('/', PokemonControllersPokemon.getPokemon)
+routerPokemon.post('/create', PokemonControllersPokemon.create)
 
 module.exports = routerPokemon;

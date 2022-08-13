@@ -6,9 +6,11 @@ module.exports = {
     async create(req: Request, res: Response) {
         try {
             const { body } = req;
-            body as IPokemon
-            const response = await PokemonServices.create(body)
-            res.status(response.status).send(response);
+            
+            
+            // const response = await PokemonServices.create(body)
+            // res.status(response.status).send(response);
+            res.send(body)
         } catch (error: any) {
             console.log(error);
             res.status(500).send({ message: error });
