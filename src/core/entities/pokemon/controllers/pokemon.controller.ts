@@ -30,19 +30,8 @@ module.exports = {
         }
     },
     async getPokemons(req: Request, res: Response) {
-        res.send(req)
         try {
-            const response = await PokemonServices.getPokemons(res)
-            // res.status(response.status).send(response);
-        } catch (error: any) {
-            console.log(error);
-            res.status(500).send({ message: error });
-        }
-    },
-    async getByIdPokemons(req: Request, res: Response) {
-        res.send(req)
-        try {
-            const response = await PokemonServices.getPokemons(res)
+            const response = await PokemonServices.getPokemons(res, req.query)
             // res.status(response.status).send(response);
         } catch (error: any) {
             console.log(error);

@@ -35,16 +35,18 @@ module.exports = {
         }
         )
     },
-    async getPokemons(res: Response) {
+    async getPokemons(res: Response, query:{}) {
         try {
-            const results = await Pokemon.find();
+            const results = await Pokemon.find(query);
+            if(results.length== 0){
+                res.status(400).send({ success: false, data:null, status: 400 })
+            }
             res.send({ success: true, data:results, status: 200 })
         } catch (error) {
             console.log(error)
             res.status(400).send({ success: false, data:null, status: 400 })
         }
-     
-        res.send()
+        res.send();
     }
 }
 

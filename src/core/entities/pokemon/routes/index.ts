@@ -10,6 +10,4 @@ routerPokemon.use(authMiddlewarePokemon)
 routerPokemon.post('/create', createPokemonValidator , PokemonControllersPokemon.create)
 routerPokemon.delete('/delete/:id', PokemonControllersPokemon.delete)
 routerPokemon.get('/', PokemonControllersPokemon.getPokemons)
-routerPokemon.get('/byId/:id', PokemonControllersPokemon.getByIdPokemons)
-
 module.exports = routerPokemon;
