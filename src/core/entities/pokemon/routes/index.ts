@@ -1,9 +1,12 @@
+import { check } from "express-validator";
+import { createPokemonValidator } from "./validatiors";
+
 const authMiddlewarePokemon = require('../../../middlewares/auth')
 const expressPokemon = require('express');
 const routerPokemon = expressPokemon.Router();
 const PokemonControllersPokemon = require('../controllers/pokemon.controller')
 
 routerPokemon.use(authMiddlewarePokemon)
-routerPokemon.post('/create', PokemonControllersPokemon.create)
+routerPokemon.post('/create', createPokemonValidator , PokemonControllersPokemon.create)
 
 module.exports = routerPokemon;
