@@ -1,3 +1,4 @@
+import { Response } from "express";
 import { IPokemon } from "../interface/pokemon"
 const Pokemon = require('../models/Pokemon')
 
@@ -26,6 +27,13 @@ module.exports = {
         } else {
             return { data: null, success: false, message: 'Credenciais inválidas', status: 400 }
         }
+    },
+    async delete(_id: string, res: Response) {
+        Pokemon.findOneAndRemove({ _id }).then((props: any) => {
+            if (props !== null) res.send({ success: true, message: 'Pokemon deletado com sucesso', status: 200 })
+            res.status(403).send({ success: false, message: 'Pokemon não encontrado', status: 403 })
+        }
+        )
     }
 }
 

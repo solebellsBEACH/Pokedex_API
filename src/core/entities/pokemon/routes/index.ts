@@ -8,5 +8,6 @@ const PokemonControllersPokemon = require('../controllers/pokemon.controller')
 
 routerPokemon.use(authMiddlewarePokemon)
 routerPokemon.post('/create', createPokemonValidator , PokemonControllersPokemon.create)
+routerPokemon.delete('/delete/:id', PokemonControllersPokemon.delete)
 
 module.exports = routerPokemon;
