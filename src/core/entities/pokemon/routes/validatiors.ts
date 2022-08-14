@@ -3,7 +3,7 @@ import { checkSchema } from "express-validator";
 export const createPokemonValidator = checkSchema({
     name: {
         isLength: {
-            errorMessage: 'Name deve ter no mínimo 7 letras',
+            errorMessage: 'Name deve ter no mínimo 5 letras',
             // Multiple options would be expressed as an array
             options: { min: 5 },
           },
@@ -35,3 +35,15 @@ export const createPokemonValidator = checkSchema({
         isString:true,
     },
 });
+
+
+export const createTypesValidator = checkSchema({
+    name: {
+        isLength: {
+            errorMessage: 'Name deve ter no mínimo 2 letras',
+            // Multiple options would be expressed as an array
+            options: { min: 2 },
+          },
+        isString:true,
+
+    }})
