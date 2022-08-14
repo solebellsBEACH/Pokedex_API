@@ -34,6 +34,17 @@ module.exports = {
             res.status(403).send({ success: false, message: 'Pokemon não encontrado', status: 403 })
         }
         )
+    },
+    async getPokemons(res: Response) {
+        try {
+            const results = await Pokemon.find();
+            res.send({ success: true, data:results, status: 200 })
+        } catch (error) {
+            console.log(error)
+            res.status(400).send({ success: false, data:null, status: 400 })
+        }
+     
+        res.send()
     }
 }
 
