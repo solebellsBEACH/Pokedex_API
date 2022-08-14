@@ -1,4 +1,3 @@
-import { check } from "express-validator";
 import { createPokemonValidator, createTypesValidator } from "./validatiors";
 
 const authMiddlewarePokemon = require('../../../middlewares/auth')

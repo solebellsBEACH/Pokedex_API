@@ -7,4 +7,4 @@ const typesSchema = new Schema({
     created_at: { type: Date, default: Date.now }
 })
 
-module.exports = mongoose.model('Types', typesSchema)
+module.exports = mongoose.model('Type', typesSchema)

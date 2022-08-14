@@ -21,6 +21,7 @@ export interface IPokemon {
     height: number,
     stat_value: { stat_value: number, name: string }[],
     abilities: { value: number, name: string }[],
+    type: string,
 }
 
 export interface IPokemonStat {

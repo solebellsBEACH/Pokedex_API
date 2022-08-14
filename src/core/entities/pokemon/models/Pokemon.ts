@@ -8,6 +8,7 @@ const pokemonSchema = new Schema({
     height: { type: Number, require: true },
     stat_value: { type: [{ stat_value: Number, name: String }], require: true },
     abilities: { type: [{ value: Number, name: String }], require: true },
+    type: { type: String, require: true },
     created_at: { type: Date, default: Date.now }
 })
 

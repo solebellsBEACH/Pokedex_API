@@ -11,14 +11,14 @@ module.exports = {
             front_default,
             height,
             stat_value,
-            abilities } = data;
+            abilities, type } = data;
 
         if (name &&
             front_default &&
             height &&
             stat_value &&
-            abilities) {
-            const pokemonInstance = new Pokemon(data)
+            abilities&&type ) {
+            const pokemonInstance = new Pokemon({...data})
 
             const response = await pokemonInstance.save();
 
