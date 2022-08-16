@@ -19,5 +19,14 @@ module.exports = {
             console.log(error);
             res.status(500).send({ message: error });
         }
-    }    
+    },
+    async getTypes(req: Request, res: Response) {
+        try {
+            const response = await PokemonTypeServices.getTypes(res)
+            // res.status(response.status).send(response);
+        } catch (error: any) {
+            console.log(error);
+            res.status(500).send({ message: error });
+        }
+    },   
 }

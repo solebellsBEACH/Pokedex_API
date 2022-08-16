@@ -11,5 +11,6 @@ routerPokemon.post('/create', createPokemonValidator , PokemonControllersPokemon
 routerPokemon.delete('/delete/:id', PokemonControllersPokemon.delete)
 routerPokemon.get('/', PokemonControllersPokemon.getPokemons)
 routerPokemon.post('/types/create',createTypesValidator, PokemonTypeControllersPokemon.create)
+routerPokemon.get('/types', PokemonTypeControllersPokemon.getTypes)
 
 module.exports = routerPokemon;
