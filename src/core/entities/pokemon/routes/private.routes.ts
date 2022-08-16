@@ -9,7 +9,7 @@ const PokemonTypeControllersPokemon = require('../controllers/pokemonType.contro
 routerPokemon.use(authMiddlewarePokemon)
 routerPokemon.post('/create', createPokemonValidator , PokemonControllersPokemon.create)
 routerPokemon.delete('/delete/:id', PokemonControllersPokemon.delete)
-routerPokemon.get('/', PokemonControllersPokemon.getPokemons)
 routerPokemon.post('/types/create',createTypesValidator, PokemonTypeControllersPokemon.create)
+
 
 module.exports = routerPokemon;
