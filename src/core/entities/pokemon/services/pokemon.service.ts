@@ -17,8 +17,8 @@ module.exports = {
             front_default &&
             height &&
             stat_value &&
-            abilities&&type ) {
-            const pokemonInstance = new Pokemon({...data})
+            abilities && type) {
+            const pokemonInstance = new Pokemon({ ...data })
 
             const response = await pokemonInstance.save();
 
@@ -35,16 +35,26 @@ module.exports = {
         }
         )
     },
-    async getPokemons(res: Response, query:{}) {
+    async getPokemons(res: Response, query: { limit?: string, page?: string }) {
+        let limit = 10;
+        let page = 0;
+        if (query?.limit !== undefined) {
+            limit = parseInt(query.limit)
+        }
+        if (query?.page !== undefined) {
+            page = parseInt(query.page)
+        }
         try {
-            const results = await Pokemon.find(query);
-            if(results.length== 0){
-                res.status(400).send({ success: false, data:null, status: 400 })
+            const results = await Pokemon.find(query)
+                .skip(limit * page)
+                .limit(limit)
+            if (results.length == 0) {
+                res.status(400).send({ success: false, data: null, status: 400 })
             }
-            res.send({ success: true, data:results, status: 200 })
+            res.send({ success: true, data: results, status: 200 })
         } catch (error) {
             console.log(error)
-            res.status(400).send({ success: false, data:null, status: 400 })
+            res.status(400).send({ success: false, data: null, status: 400 })
         }
         res.send();
     }
