@@ -4,9 +4,9 @@ const pokemonPrivateRoutes = require('./core/entities/pokemon/routes/private.rou
 const pokemonRoutes = require('./core/entities/pokemon/routes/routes')
 const userRoutes = require('./core/entities/user/routes/routes')
 const userPrivateRoutes = require('./core/entities/user/routes/private.routes')
-
+var cors = require('cors')
 const app = express();
-
+app.use(cors())
 app.use(express.json())
 require('dotenv').config()
 const { MONGO_URI } = process.env
