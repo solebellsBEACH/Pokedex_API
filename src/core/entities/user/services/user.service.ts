@@ -42,5 +42,26 @@ module.exports = {
         } catch (error) {
             return { success: false, message: 'Usuário não encontrada', status: 400, data: user }
         }
+    },
+    async addProduct(userId: string, pokemonBody: { name: string, front_default: string, _id: string }) {
+
+        try {
+            const user = await User.findOne({ _id: userId })
+
+
+            let cartArray = user.cart
+            cartArray.push(pokemonBody)
+
+            user.cart = cartArray
+            user.save()
+            //    const data = user.update({ cart: cartArray }, {hasALife: true})
+
+            return { success: true, message: 'Pokemon adicionado com sucesso', status: 200, data: user }
+        } catch (error) {
+            console.log(error)
+            return { success: false, message: 'Erro ao adicionar Pokemon no carrinho', status: 400, data: error }
+        }
+
+
     }
 }
