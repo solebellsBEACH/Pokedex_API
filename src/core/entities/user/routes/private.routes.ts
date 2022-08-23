@@ -8,5 +8,5 @@ const UserControllersPrivate = require('../controllers/user.controller')
 routerPrivate.use(authMiddleware)
 routerPrivate.get('/', UserControllersPrivate.getUser)
 routerPrivate.post('/cart', createCartPokemon, UserControllersPrivate.addProduct)
-
+routerPrivate.delete('/cart/:id',  UserControllersPrivate.deleteProduct)
 module.exports = routerPrivate;
