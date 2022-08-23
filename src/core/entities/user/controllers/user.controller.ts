@@ -55,7 +55,17 @@ module.exports = {
         try {
             const { userId } = req;
             const { id } = req.params
-            const response = await UserServices.deleteProduct( id, userId,res)
+            const response = await UserServices.deleteProduct(id, userId, res)
+            res.status(response.status).send(response);
+        } catch (error) {
+            res.status(500).send({ message: error });
+        }
+    }
+    ,
+    async getProducts(req: Request & { userId: string }, res: Response) {
+        try {
+            const { userId } = req
+            const response = await UserServices.getProducts(userId)
             res.status(response.status).send(response);
         } catch (error) {
             res.status(500).send({ message: error });

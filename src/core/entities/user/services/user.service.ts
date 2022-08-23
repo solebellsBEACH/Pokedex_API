@@ -74,11 +74,13 @@ module.exports = {
         try {
             const user = await User.findOne({ _id: userId })
             let indexOf: any | number = null
+
             user.cart.map((e: { _id: string }, index: number) => {
                 if (e._id == id && indexOf == null) {
                     indexOf = index
                 }
             })
+
             if (indexOf == null) {
                 return { success: false, message: 'Pokemon não encontrado nos registros do usuário', status: 400, data: null }
             }
@@ -86,10 +88,17 @@ module.exports = {
             const arrayProducts = user.cart
             arrayProducts.splice(indexOf, 1)
 
-
             return { success: true, message: 'Pokemon deletado com sucesso', status: 200, data: arrayProducts }
         } catch (error) {
-            return { success: false, message: 'Erro ao adicionar Pokemon no carrinho', status: 400, data: error }
+            return { success: false, message: 'Erro ao deletar Pokemon do carrinho', status: 400, data: error }
+        }
+    },
+    async getProducts(userId: string,) {
+        try {
+            const user = await User.findOne({ _id: userId })
+            return { success: true, message: '', status: 200, data: user.cart }
+        } catch (error) {
+            return { success: false, message: 'Erro ao listar os pokemons do carrinho', status: 400, data: error }
         }
     }
 }
