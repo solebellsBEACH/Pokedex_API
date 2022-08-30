@@ -1,5 +1,6 @@
 import { IAuthenticateUser, IUser } from "../interfaces/user";
 import { Request, Response } from 'express';
+import { validationResult } from "express-validator";
 const UserServices = require('../services/user.service')
 
 module.exports = {
@@ -34,7 +35,43 @@ module.exports = {
         } catch (error) {
             res.status(500).send({ message: error });
         }
+    },
+    async addProduct(req: Request & { userId: string }, res: Response) {
+
+        const validationError = validationResult(req)
+        if (validationError.array().length > 0) {
+            res.status(502).send({ message: `Campo ${validationError.array()[0].param} é inválido` });
+        }
+
+        try {
+            const { userId } = req;
+            const response = await UserServices.addProduct(userId, req.body, res)
+            res.status(response.status).send(response);
+        } catch (error) {
+            res.status(500).send({ message: error });
+        }
+    },
+    async deleteProduct(req: Request & { userId: string }, res: Response) {
+        try {
+            const { userId } = req;
+            const { id } = req.params
+            const response = await UserServices.deleteProduct(id, userId, res)
+            res.status(response.status).send(response);
+        } catch (error) {
+            res.status(500).send({ message: error });
+        }
     }
+    ,
+    async getProducts(req: Request & { userId: string }, res: Response) {
+        try {
+            const { userId } = req
+            const response = await UserServices.getProducts(userId)
+            res.status(response.status).send(response);
+        } catch (error) {
+            res.status(500).send({ message: error });
+        }
+    }
+
 
 
 }
