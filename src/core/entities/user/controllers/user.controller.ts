@@ -1,9 +1,9 @@
 import { IAuthenticateUser, IUser } from "../interfaces/user";
 import { Request, Response } from 'express';
 import { validationResult } from "express-validator";
-const UserServices = require('../services/user.service')
+import { UserServices } from "../services/user.service";
 
-module.exports = {
+export const UserControllers= {
 
     async create(req: Request, res: Response) {
         try {

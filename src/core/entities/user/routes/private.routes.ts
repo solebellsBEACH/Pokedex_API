@@ -1,13 +1,12 @@
+import { UserControllers } from "../controllers/user.controller";
 import { createCartPokemon } from "./validatiors";
 
-const authMiddleware = require('../../../middlewares/auth')
+import authMiddleware = require('../../../middlewares/auth')
 const expressPrivate = require('express');
-const routerPrivate = expressPrivate.Router();
-const UserControllersPrivate = require('../controllers/user.controller')
+export const userPrivateRoutes = expressPrivate.Router();
 
-routerPrivate.use(authMiddleware)
-routerPrivate.get('/', UserControllersPrivate.getUser)
-routerPrivate.post('/cart', createCartPokemon, UserControllersPrivate.addProduct)
-routerPrivate.delete('/cart/:id',  UserControllersPrivate.deleteProduct)
-routerPrivate.get('/cart',  UserControllersPrivate.getProducts)
-module.exports = routerPrivate;
+userPrivateRoutes.use(authMiddleware)
+userPrivateRoutes.get('/', UserControllers.getUser)
+userPrivateRoutes.post('/cart', createCartPokemon, UserControllers.addProduct)
+userPrivateRoutes.delete('/cart/:id',  UserControllers.deleteProduct)
+userPrivateRoutes.get('/cart',  UserControllers.getProducts)

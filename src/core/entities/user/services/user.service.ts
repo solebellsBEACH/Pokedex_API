@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 import { Response } from "express";
 const User = require('../models/User')
 
-module.exports = {
+export const UserServices = {
     async create(data: IUser) {
         if (await User.findOne({ email: data.email })) {
             return { success: false, message: 'Usuário existente', status: 400 }

@@ -1,9 +1,7 @@
+import { PokemonControllers } from "../controllers/pokemon.controller";
+import { PokemonTypeControllers } from "../controllers/pokemonType.controller";
 const expressPokemon = require('express');
-const routerPokemon = expressPokemon.Router();
-const PokemonControllersPokemon = require('../controllers/pokemon.controller')
-const PokemonTypeControllersPokemon = require('../controllers/pokemonType.controller')
+export const PokemonPrivateRoutes = expressPokemon.Router();
 
-routerPokemon.get('/', PokemonControllersPokemon.getPokemons)
-routerPokemon.get('/types', PokemonTypeControllersPokemon.getTypes)
-
-module.exports = routerPokemon;
+PokemonPrivateRoutes.get('/', PokemonControllers.getPokemons)
+PokemonPrivateRoutes.get('/types', PokemonTypeControllers.getTypes)

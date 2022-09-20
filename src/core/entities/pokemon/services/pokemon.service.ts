@@ -2,7 +2,7 @@ import { Response } from "express";
 import { IPokemon } from "../interface/pokemon"
 const Pokemon = require('../models/Pokemon')
 
-module.exports = {
+export const PokemonServices = {
     async create(data: IPokemon) {
         if (await Pokemon.findOne({ name: data.name })) {
             return { success: false, message: 'Pokemon existente', status: 400 }

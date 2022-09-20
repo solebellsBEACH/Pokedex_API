@@ -1,15 +1,13 @@
+import { PokemonControllers } from "../controllers/pokemon.controller";
+import { PokemonTypeControllers } from "../controllers/pokemonType.controller";
 import { createPokemonValidator, createTypesValidator } from "./validatiors";
 
 const authMiddlewarePokemon = require('../../../middlewares/auth')
 const expressPokemon = require('express');
-const routerPokemon = expressPokemon.Router();
-const PokemonControllersPokemon = require('../controllers/pokemon.controller')
-const PokemonTypeControllersPokemon = require('../controllers/pokemonType.controller')
+export const PokemonRoutes = expressPokemon.Router();
 
-routerPokemon.use(authMiddlewarePokemon)
-routerPokemon.post('/create', createPokemonValidator , PokemonControllersPokemon.create)
-routerPokemon.delete('/delete/:id', PokemonControllersPokemon.delete)
-routerPokemon.post('/types/create',createTypesValidator, PokemonTypeControllersPokemon.create)
+PokemonRoutes.use(authMiddlewarePokemon)
+PokemonRoutes.post('/create', createPokemonValidator , PokemonControllers.create)
+PokemonRoutes.delete('/delete/:id', PokemonControllers.delete)
+PokemonRoutes.post('/types/create',createTypesValidator, PokemonTypeControllers.create)
 
-
-module.exports = routerPokemon;

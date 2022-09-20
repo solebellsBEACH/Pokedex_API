@@ -1,9 +1,9 @@
 import { IPokemon } from "../interface/pokemon";
 import { Request, Response } from 'express';
 import { validationResult } from "express-validator";
-const PokemonTypeServices = require('../services/pokemonType.service')
+import { PokemonTypeServices } from "../services/pokemonType.service";
 
-module.exports = {
+export const PokemonTypeControllers = {
     async create(req: Request, res: Response) {
         try {
             const { body } = req;

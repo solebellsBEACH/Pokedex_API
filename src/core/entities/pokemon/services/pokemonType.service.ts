@@ -2,7 +2,7 @@ import { Response } from "express";
 
 const Type = require('../models/Type')
 
-module.exports = {
+export const PokemonTypeServices = {
     async create(data: { name: string }) {
         if (await Type.findOne({ name: data.name })) {
             return { success: false, message: 'Type existente', status: 400 }
